@@ -13,7 +13,11 @@ namespace OdeToFood.Controllers
         {
             var message = Server.HtmlEncode(name);
 
-            return Content(message);
+            // I could use a FileResult to return PDF files, spreadsheets, etc.
+            // return File(Server.MapPath("~/Content/site.css"), "text/css");
+
+            // Or a json file
+            return Json(new { Message = message, Name = "Scott" }, JsonRequestBehavior.AllowGet);
         }
     }
 }
