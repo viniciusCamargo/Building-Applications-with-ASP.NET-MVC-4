@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OdeToFood.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,12 +7,20 @@ using System.Web.Mvc;
 
 namespace OdeToFood.Controllers
 {
+    [Log]
     public class CuisineController : Controller
     {
         // GET: Cuisine
-        [HttpGet]
+
+        // I can place an action filter on an individual action or
+        // even the whole controller
+        //[Authorize]
+
+        // Global filters: are registered at application start up
         public ActionResult Search(string name = "french")
         {
+            //throw new Exception("Something terrible has happened");
+
             var message = Server.HtmlEncode(name);
 
             // I could use a FileResult to return PDF files, spreadsheets, etc.
