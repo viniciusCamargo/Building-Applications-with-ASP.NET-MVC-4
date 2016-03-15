@@ -4,7 +4,9 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>The Latest Reviews</h2>
+
+We are showing the latest @Model.Count() reviews
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -38,7 +40,11 @@
             @Html.DisplayFor(modelItem => item.Country)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Rating)
+            @*@Html.DisplayFor(modelItem => item.Rating)*@
+            @*@item.Rating / 10*@ @*ie 10 / 10*@
+            @*@(item.Rating / 10)*@ @*ie 1*@
+            @*R@(item.Rating)*@ @*ie R10*@
+            @*@@OdeToCode*@ @*ie @OdeToCode*@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
