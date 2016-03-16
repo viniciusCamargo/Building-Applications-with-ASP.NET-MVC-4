@@ -24,12 +24,19 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Reviews", "Index", "Reviews")</li>
+                    @*
+                        The first item is the "text I want to display", the second
+                        is "the action I want to reach on some controller" and the
+                        third is "the name of the controller that I want to reach".
+                    *@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
     <div class="container body-content">
+        @RenderSection("featured", required: false)
         @RenderBody()
         <hr />
         <footer>
