@@ -2,16 +2,18 @@
 
 @{
     ViewBag.Title = "Index";
+    //var firstReview = Model.First();
 }
 
 <h2>The Latest Reviews</h2>
+@*<h3>@firstReview.Name</h3>*@
 
 We are showing the latest @Model.Count() reviews
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+@*<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -26,9 +28,9 @@ We are showing the latest @Model.Count() reviews
             @Html.DisplayNameFor(model => model.Rating)
         </th>
         <th></th>
-    </tr>
+    </tr>*@
 
-@foreach (var item in Model) {
+@*@foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
@@ -39,19 +41,30 @@ We are showing the latest @Model.Count() reviews
         <td>
             @Html.DisplayFor(modelItem => item.Country)
         </td>
-        <td>
+        <td>*@
             @*@Html.DisplayFor(modelItem => item.Rating)*@
             @*@item.Rating / 10*@ @*ie 10 / 10*@
             @*@(item.Rating / 10)*@ @*ie 1*@
             @*R@(item.Rating)*@ @*ie R10*@
             @*@@OdeToCode*@ @*ie @OdeToCode*@
-        </td>
+        @*</td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>
-}
+}*@
 
-</table>
+@*</table>*@
+
+@foreach(var item in Model)
+{
+    @:Review @** tells razor it's literal text *@
+    <div class="review">
+        <h4>@item.Name</h4>
+        <span>Rating: @item.Rating</span>
+        <p>@item.City, @item.Country</p>
+    </div>
+    @:}
+}
