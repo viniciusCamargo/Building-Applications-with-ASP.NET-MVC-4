@@ -68,5 +68,21 @@
         <h4>@item.Name</h4>
         <span>Rating: @item.Rating</span>
         <p>@item.City, @item.Country</p>
+
+        <span class="right">
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+            @*
+                The third parameter here pass "some information so
+                the Edit action knows which review I'm trying to edit.
+                The id property is wrapped up on an annonymous object"
+                and will be sent through the url then "will automatically
+                be extracted by the runtime and passed in to our action".
+
+                My note: I'm not sure why I don't need to set the name of
+                my controller here as the third parameter. But I think if
+                I just ommit the name of my controller the compiler will
+                assume that it should use the current controller.
+            *@
+        </span>
     </div>
 }

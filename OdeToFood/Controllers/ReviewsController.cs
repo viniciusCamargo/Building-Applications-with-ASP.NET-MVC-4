@@ -51,23 +51,44 @@ namespace OdeToFood.Controllers
         // GET: Reviews/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var review = _reviews.Single(r => r.Id == id);
+            /*
+             * "(...) linq query to say give me a single object that
+             * is in this collection (_reviews) that matches this
+             * criteria (r.Id == id): the id property (r.Id) has to match
+             * this incoming id parameter (id).
+             */
+
+            return View(review);
         }
 
         // POST: Reviews/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
-            try
+            var review = _reviews.Single(r => r.Id == id);
+            /*
+             * "What the TryUpdateModel() will do is go through a process known
+             * as model binding, in fact model binding happens anytime you even
+             * have a parameter in an action method. It's what ASP.NET MVC does
+             * when it goes out and it looks around at a request to try to find
+             * things to move in to an object for you.  So when I have a parameter
+             * called ID on the edit action, the model binder in ASP.NET MVC will
+             * find that ID, move it into that for me. When I say TryUpdateModel
+             * on review, the model binder will go out and look at review, see that
+             * it has a rating property, and then go out and try to find something
+             * called rating. But fortunately, there should be a posted form input
+             * named rating. The MVC runtime will find that and just move it into
+             * my review. If anything fails, if any validation errors occur,
+             * TryUpdateModel will return false and I don't want to save that
+             * review."
+             */
+            if (TryUpdateModel(review))
             {
-                // TODO: Add update logic here
-
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(review);
         }
 
         // GET: Reviews/Delete/5
