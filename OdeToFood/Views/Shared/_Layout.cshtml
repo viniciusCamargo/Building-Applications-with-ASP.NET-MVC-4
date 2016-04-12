@@ -38,6 +38,7 @@
     <div class="container body-content">
         @RenderSection("featured", required: false)
         @RenderBody()
+        @Html.Action("BestReview", "Reviews")
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>

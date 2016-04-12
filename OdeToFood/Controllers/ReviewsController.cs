@@ -9,6 +9,21 @@ namespace OdeToFood.Controllers
 {
     public class ReviewsController : Controller
     {
+        /* 
+         * All public methods on the controller can be invoked by the
+         * user on the browser, execpt if you use ChildActionOnly attribute.
+         * Then you can only access it as a child request not as http request
+         */
+        [ChildActionOnly]
+        public ActionResult BestReview()
+        {
+            var bestReview = from r in _reviews
+                             orderby r.Rating descending
+                             select r;
+
+            return PartialView("_Review", bestReview.First());
+        }
+
         // GET: Reviews
         public ActionResult Index()
         {
