@@ -30,6 +30,43 @@ namespace OdeToFood.Controllers
             return HttpNotFound();
         }
 
+        /*
+         * I don't actually use this restaurantId parameter here because this action
+         * basically loads a view, I leave it here just for possbile future uses like
+         * a ViewModel with some default values for a form field that would be tracked
+         * to the specific Review with this parameter. 
+         */
+        [HttpGet]
+        public ActionResult Create(int restaurantId)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(RestaurantReview review)
+        {
+            /*
+             * If the flag IsValid returns false, that means that the validation rules
+             * associated with that entity failed, so the model binding did not proceed.
+             */
+            if (ModelState.IsValid)
+            {
+                _db.Reviews.Add(review);
+                /*
+                 * "Entity framework doesn't actually save anything to the database until
+                 * you call SaveChanges(). At that point it will issue INSERT, or UPDATE or
+                 * DELETE statements or all three."
+                 */
+                _db.SaveChanges();
+                /*
+                 * If I don't redirect here, the user will stay at /create and can accidently
+                 * create another review, since there is not a success message
+                 */
+                return RedirectToAction("Index", new { id = review.RestaurantId });
+            }
+            return View(review);
+        }
+
         protected override void Dispose(bool disposing)
         {
             _db.Dispose();
