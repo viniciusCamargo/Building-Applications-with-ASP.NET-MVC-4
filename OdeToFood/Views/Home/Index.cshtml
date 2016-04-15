@@ -4,6 +4,16 @@
     ViewBag.Title = "Home Page";
 }
 
+@* If I had chosen POST as the method, the values would be sent at the body
+   of the HTTP request, thus wouldn't be shown for the user at the URL. The
+   GET method wraps up all the values and put it in the query string.*@
+    
+@*"POST operations are write operations. GET operations are read operations."*@
+<form method="get">
+    <input type="search" name="searchTerm" />
+    <input type="submit" value="Search By Name" />
+</form>
+
 @foreach (var item in Model)
 {
     <div>
