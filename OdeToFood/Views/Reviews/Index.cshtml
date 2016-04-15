@@ -1,0 +1,43 @@
+﻿@* 
+On this page I'm using two models, one to display the name of the
+restaurant (Models.Restaurant) and another to display the information
+of the reviews (Models.RestaurantReview, inside the partial view _Reviews).
+The first one is not a colection (IEnumerable) because I only need 
+one information of the Restaurant model while in the Reviews I need all
+the information.
+*@
+
+@model OdeToFood.Models.Restaurant
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Reviews for @Model.Name</h2>
+
+@*
+This html helper won't render my partial view if I don't change my model.
+The Entity framework will load all the properties of the table (Id, Name,
+City and Country), except its associate child collections
+(ICollection<RestaurantReview> Reviews) because they are in a different
+table. So I have to add the virtual keyword to my property, then the runtime
+will run a second query for the Reviews table. I'm not sure if it's a good
+practice since I'm trying to access my data in my view (with Model.Reviews)
+when it should be in my controller and with a single query for better
+perfomance. Even though the author stated that this technique is the easiest
+way to fix this issue, there are other alternatives to approach this task,
+I'll look for it later at https://msdn.microsoft.com/en-US/data/jj574232
+
+"The keyword virtual means “I might want to make another version of this method
+in a child class”. You don’t have to override the method, but if you don’t have
+the word present, you definitely can’t. This makes override and virtual a kind
+of matched pair. You use virtual to mark a method as able to be overridden and
+override to actually provide a replacement for the method." - C# Programming
+Yellow Book by Rob Miles.
+*@
+
+@Html.Partial("_Reviews", Model.Reviews)
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>

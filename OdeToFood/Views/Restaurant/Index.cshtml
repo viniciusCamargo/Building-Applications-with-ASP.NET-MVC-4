@@ -36,7 +36,31 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+
+        @*
+        This is the default ActionLink scaffolded. The problem is I'm passing
+        item.Id as a HTML attribute and Reviews as route value, when what I
+        really want is to pass Reviews as the controller and item.Id as route values.
+        To solve this I need to change the overload by including a null parameter a
+        HTML attributes. This parameter is usefull to include attributes and values
+        such as IDs, classes, title and others attributes expected for an anchor tag.
+
+        @Html.ActionLink("Reviews", "Index", "Reviews", new { id = item.Id }) |
+
+        *A sign of this little bug is the "Length=7" in the query string when I
+        hover over the link at the view.*
+        e.g. localhost:60920/restaurant?Length=7
+        **@
+            @Html.ActionLink("Reviews", "Index", "Reviews", new { id = item.Id }, null) |
+        @*
+        If I wanted the route values to be restaurantId for example, I would have to
+        add route to the routing engine, so it would be allowed at the query string:
+
+            routes.MapRoute(
+                "Reviews",
+                "Reviews/{action}/{restaurantId},
+                 new {controller="Reviews"});
+        *@
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>

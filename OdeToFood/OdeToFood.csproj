@@ -324,15 +324,15 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Restaurant\Create.cshtml" />
     <Content Include="Views\Restaurant\Delete.cshtml" />
-    <Content Include="Views\Restaurant\Details.cshtml" />
     <Content Include="Views\Restaurant\Edit.cshtml" />
     <Content Include="Views\Restaurant\Index.cshtml" />
+    <Content Include="Views\Reviews\Index.cshtml" />
+    <Content Include="Views\Reviews\_Reviews.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\Cuisine\" />
-    <Folder Include="Views\Reviews\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
