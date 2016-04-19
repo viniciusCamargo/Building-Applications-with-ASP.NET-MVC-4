@@ -76,8 +76,14 @@ namespace OdeToFood.Controllers
             return View(model);
         }
 
+        /*
+         * In order to prevent mass assignment/overposting, we should exclude
+         * ReviewerName (or any other property) from data binding of the model,
+         * we can do so using the Bind attribute or creating a view model.
+         * More at: http://odetocode.com/blogs/scott/archive/2012/03/11/complete-guide-to-mass-assignment-in-asp-net-mvc.aspx
+         */
         [HttpPost]
-        public ActionResult Edit(RestaurantReview review)
+        public ActionResult Edit([Bind(Exclude="ReviewerName")] RestaurantReview review)
         {
             if (ModelState.IsValid)
             {
