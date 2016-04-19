@@ -1,6 +1,8 @@
 ﻿using OdeToFood.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -62,6 +64,26 @@ namespace OdeToFood.Controllers
                  * If I don't redirect here, the user will stay at /create and can accidently
                  * create another review, since there is not a success message
                  */
+                return RedirectToAction("Index", new { id = review.RestaurantId });
+            }
+            return View(review);
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var model = _db.Reviews.Find(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(RestaurantReview review)
+        {
+            if (ModelState.IsValid)
+            {
+                /* The Entry api takes an existing review and change its modified state. */
+                _db.Entry(review).State = EntityState.Modified;
+                _db.SaveChanges();
                 return RedirectToAction("Index", new { id = review.RestaurantId });
             }
             return View(review);
