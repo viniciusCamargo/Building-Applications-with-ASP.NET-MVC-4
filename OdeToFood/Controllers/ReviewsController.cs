@@ -83,7 +83,8 @@ namespace OdeToFood.Controllers
          * More at: http://odetocode.com/blogs/scott/archive/2012/03/11/complete-guide-to-mass-assignment-in-asp-net-mvc.aspx
          */
         [HttpPost]
-        public ActionResult Edit([Bind(Exclude="ReviewerName")] RestaurantReview review)
+        //public ActionResult Edit([Bind(Exclude="ReviewerName")] RestaurantReview review)
+        public ActionResult Edit(RestaurantReview review)
         {
             if (ModelState.IsValid)
             {
