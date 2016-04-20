@@ -6,10 +6,45 @@ using System.Web;
 
 namespace OdeToFood.Models
 {
-    public class RestaurantReview
+    //public class MaxWordsAttribute : ValidationAttribute
+    //{
+    //    /*
+    //     * This specific custom validation will happens only on the server
+    //     * side. But I could implement custom JS to plug to the client side
+    //     * validation framework.
+    //     *
+    //     * The base will be used by the FormatErrorMessage method to set the
+    //     * errorMessage, in this case {0} will be replaced by the DisplayName.
+    //     */
+    //    public MaxWordsAttribute(int maxWords) : base("{0} has too many words.")
+    //    {
+    //        _maxWords = maxWords;
+    //    }
+
+    //    /* The value here would be the property where this attribute was applied */
+    //    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+    //    {
+    //        if (value != null)
+    //        {
+    //            var valueAsString = value.ToString();
+    //            if (valueAsString.Split(' ').Length > _maxWords)
+    //            {
+    //                var errorMessage = FormatErrorMessage(validationContext.DisplayName);
+    //                return new ValidationResult(errorMessage);
+    //            }
+    //        }
+    //        return ValidationResult.Success;
+    //    }
+
+    //    private readonly int _maxWords;
+    //}
+
+    public class RestaurantReview : IValidatableObject
     {
         public int Id { get; set; }
 
+        // Custom error message
+        //[Range(1,10, ErrorMessage = "string")]
         [Range(1,10)]
         [Required]
         /*
@@ -20,7 +55,7 @@ namespace OdeToFood.Models
          * model binder requires integers by default. "Because integers
          * in C# are value types, that means it cannot be null". Other
          * required value types would be DateTime, long and decimal.
-        */
+         */
         public int Rating { get; set; }
 
         /*
@@ -39,6 +74,7 @@ namespace OdeToFood.Models
          * actual value submitted to the DB will be NULL.
          */
         [DisplayFormat(NullDisplayText = "anonymous")]
+        //[MaxWords(1)]
         public string ReviewerName { get; set; }
         public int RestaurantId { get; set; }
         /*
@@ -55,5 +91,14 @@ namespace OdeToFood.Models
          * to 1024 characters, resulting in data loss. So I have to force the 
          * migration with the -Force flag: "Update-Database -Verbose - Force".
          */
+
+        //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        //{
+        //    if (Rating < 2 && ReviewerName.ToLower().StartsWith("scott"))
+        //    {
+        //        yield return new ValidationResult("Sorry, Scott, you can't do this");
+        //    }
+        //}
+
     }
 }

@@ -14,6 +14,12 @@
     <div class="form-horizontal">
         <h4>Edit Review</h4>
         <hr />
+        @*
+         * The ValidationSummary is not associated with any specific field on the model.
+         *
+         * If I set the first parameter to false, the ValidationSummary will display the error
+         * messages for all properties.
+         *@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
 
