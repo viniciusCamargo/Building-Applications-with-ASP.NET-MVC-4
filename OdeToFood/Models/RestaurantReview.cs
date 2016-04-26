@@ -39,7 +39,8 @@ namespace OdeToFood.Models
     //    private readonly int _maxWords;
     //}
 
-    public class RestaurantReview : IValidatableObject
+    //public class RestaurantReview : IValidatableObject
+    public class RestaurantReview
     {
         public int Id { get; set; }
 
