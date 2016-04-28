@@ -4,8 +4,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    @*The virtual path for the bundles*@
+    @Styles.Render("~/Content/themes/base/css")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @*
+    * If I simply run the application with the current setup, the bundles wouldn't
+    * be bundled or minified because I'm running my application in debug mode.
+    * In order to bundle my scripts and CSS I need to disable the debug mode at
+    * web.config: <compilation debug="false" />
+    *@
 
 </head>
 <body>

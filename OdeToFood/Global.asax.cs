@@ -15,6 +15,7 @@ namespace OdeToFood
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            // Where the bundles are registered
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
