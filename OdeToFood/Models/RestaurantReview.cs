@@ -90,7 +90,7 @@ namespace OdeToFood.Models
          * This first I run this command it fail because I'm changing a
          * column (Body) that used to be nvarchar max (up to 2GB of storage)
          * to 1024 characters, resulting in data loss. So I have to force the 
-         * migration with the -Force flag: "Update-Database -Verbose - Force".
+         * migration with the -Force flag: "Update-Database -Verbose -Force".
          */
 
         //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
